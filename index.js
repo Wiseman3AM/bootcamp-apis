@@ -32,21 +32,41 @@ app.get('/api/word_game', function(req, res) {
 
 
 
-app.post('/api/word_game', function(req, res) {
-    const sentence = req.body.sentence; 
-
-
-    const longestWordgame = longestWord(sentence);
-    const shortestWordgame = shortestWord(sentence);
-    const sumWordgame = wordLengths(sentence);
+app.get('/api/phonebill/total', function(req, res) {
+    
+    const usage = req.query.usage;
+    const totalBill = totalPhoneBill(usage);
 
     return res.json({ 
-        longestWord: longestWordgame,
-        shortestWord: shortestWordgame,
-        wordLengths: sumWordgame            
+        Bill:  totalBill,           
     });
 });
 
+
+app.get('/api/phonebill/smsPrice', function(req, res) {
+    
+    const usage = req.query.usage;
+    const totalBill = totalPhoneBill(usage);
+
+    return res.json({ 
+        type:  'sms',
+        price: 0.65,
+        
+        total: ''         
+    });
+});
+
+
+
+app.get('/api/enoughAirtime', function(req, res) {
+    
+    const usage = req.query.usage;
+    const calculatedAirtime = enoughAirtime(usage);
+
+    return res.json({ 
+        balance:  totalBill,           
+    });
+});
 
 
 

@@ -2,10 +2,7 @@
 GET http://localhost:1205/api/word_game?sentence=My%20name%20is%20Amukelani%20Mthombeni%20Wiseman%20,%20what%20is%20yours
 Content-Type: application/json
 
-### POST word game API
-POST http://localhost:1205/api/word_game
+### GETT total phone bill API
+GET http://localhost:1205/api/phonebill/total?usage=call,%20sms,%20sms,%20call,%20sms,%20call,%20,%20call,%20call,%20sms
 Content-Type: application/json
 
-{
-    "sentence": ""
-}

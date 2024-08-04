@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,29 +11,26 @@
     <script src="alpineData.js"></script>
     <title>Bootcamp APIs</title>
 </head>
-<body x-data="bootcampFunctions()">
-    
-   <div class="wordGame">
-    <h1>Wordgame Function</h1>
-    <P>Enter a sentence of 10 or more words to get the following information</P>
-    <div> <label for="sentenceInput">Enter sentence here:</label><input x-model="sentence" type="text" id="sentenceInput"> </div>
-   
-    <button 
-    class="sentenceButton" 
-    @click="wordGameShow = false; wordGame()"
-    x-show="wordGameShow = true">Play word game</button>
-   
-    <div class="wordGameResults">
-        <div x-text="'Longest word :' +  wordGameObject.longestWord"></div>
-        <div x-text="'Shortest word :' + wordGameObject.shortestWord"></div>
-        <div x-text="'Sum of all words: ' + wordGameObject.wordLengths"></div> 
-    </div>
 
-    <button 
-    class="sentenceButton" 
-    x-show="wordGameShow = false" 
-    @click=" wordGameShow = true" 
-    >Enter new sentence</button>
+<body x-data="bootcampFunctions()">
+
+    <div class="wordGame">
+        <h1>Wordgame Function</h1>
+        <P>Enter a sentence of 10 or more words to get the following information</P>
+        <div> <label for="sentenceInput">Enter sentence here:</label><input x-model="sentence" type="text"
+                id="sentenceInput"> </div>
+
+        <button class="sentenceButton" @click="wordGameShow = false; wordGame()" x-show="wordGameShow = true">Play word
+            game</button>
+
+        <div class="wordGameResults">
+            <div x-text="'Longest word :' +  wordGameObject.longestWord"></div>
+            <div x-text="'Shortest word :' + wordGameObject.shortestWord"></div>
+            <div x-text="'Sum of all words: ' + wordGameObject.wordLengths"></div>
+        </div>
+
+        <button class="sentenceButton" x-show="wordGameShow = false" @click=" wordGameShow = true">Enter new
+            sentence</button>
 
     </div>
 
@@ -40,7 +38,15 @@
 
     <div class="totalPhoneBill">
         <h2>Total phone bill</h2>
-        
+
+        <P>Enter a "call," "sms," or "data," to calculate usage</P>
+
+        <div> <label for="usageInput">Enter usage here:</label><input x-model="usage" type="text" id="usageInput">
+        </div>
+
+        <button class="sentenceButton" @click=" totalPhoneBill()">calculate phone bill</button>
+        <div x-text="'Your total bill = ' + totalBill.Bill"></div>
+
 
 
     </div>
@@ -49,4 +55,5 @@
 
 
 </body>
+
 </html>
