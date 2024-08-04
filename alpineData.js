@@ -6,7 +6,11 @@ document.addEventListener('alpine:init', () => {
       sentence: '',
       usage: '',
       wordGameObject: {},
-      totalBill: "",
+      totalBill: '',
+      smsBill: '',
+      callBill: '',
+      dataBill: '',
+
 
 
 
@@ -55,16 +59,67 @@ document.addEventListener('alpine:init', () => {
         const verifiedUsage = this.usage.split(',')
         const validValues = ['call', 'sms', 'data'];
         const allValid = verifiedUsage.every(word => validValues.includes(word.trim()));
-      
+
         if (allValid) {
-        localStorage['usage'] = this.usage;
-        this.fetchTotalPhoneBillAPI();
+          localStorage['usage'] = this.usage;
+          this.fetchTotalPhoneBillAPI();
         } else {
           alert('Please enter correct values!');
+          this.usage = '';
+          localStorage['usage'] = this.usage;
         }
       },
 
 
+      async fetchTotalCallBillAPI() {
+
+        try {
+          const response = await axios.get(`http://localhost:1205/api/phonebill/callPrice?`, {
+            params: { usage: this.usage }
+          });
+          this.callBill = response.data
+          console.log('Call bill', this.callBill);
+        } catch (error) {
+          console.error('Error: ', error);
+        }
+      },
+
+      async fetchTotalDataBillAPI() {
+
+        try {
+          const response = await axios.get(`http://localhost:1205/api/phonebill/dataPrice?`, {
+            params: { usage: this.usage }
+          });
+          this.dataBill = response.data
+          console.log('Data bill', this.dataBill);
+        } catch (error) {
+          console.error('Error: ', error);
+        }
+      },
+
+      async fetchTotalSmsBillAPI() {
+
+        try {
+          const response = await axios.get(`http://localhost:1205/api/phonebill/smsPrice?`, {
+            params: { usage: this.usage }
+          });
+          this.smsBill = response.data
+          console.log('Sms bill', this.smsBill);
+        } catch (error) {
+          console.error('Error: ', error);
+        }
+      },
+
+      billDetail() {
+        if (!this.usage || this.usage.trim() === '') {
+          alert("Please enter usage");
+        } else {
+          this.fetchTotalCallBillAPI();
+          this.fetchTotalSmsBillAPI();
+          this.fetchTotalDataBillAPI();
+        }
+      }
+      
 
 
 
@@ -75,12 +130,14 @@ document.addEventListener('alpine:init', () => {
 
 
 
-      async init() {
+
+
+   /*    async init() {
 
 
 
       },
-
+ */
 
     }
   })
