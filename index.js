@@ -5,6 +5,10 @@ import enoughAirtime from './function/enoughAirtime.js';
 import longestWord from './function/wordGameLongest.js';
 import shortestWord from './function/wordGameShortest.js';
 import wordLengths from './function/wordGameSum.js';
+import totalCallBill from './function/totalCallBill.js';
+import totalDataBill from './function/totalDataBill.js';
+import totalSmsBill from './function/totalSmsBill.js';
+
 
 
 const app = express();
@@ -46,13 +50,42 @@ app.get('/api/phonebill/total', function(req, res) {
 app.get('/api/phonebill/smsPrice', function(req, res) {
     
     const usage = req.query.usage;
-    const totalBill = totalPhoneBill(usage);
+    const total = totalSmsBill(usage).totalBill;
+    const instance = totalSmsBill(usage).smsCount;
 
     return res.json({ 
         type:  'sms',
-        price: 0.65,
-        
-        total: ''         
+        price: 'R 0.65',
+        occured: instance ,
+        total: total         
+    });
+});
+
+app.get('/api/phonebill/dataPrice', function(req, res) {
+    
+    const usage = req.query.usage;
+    const total = totalDataBill(usage).totalBill;
+    const instance = totalDataBill(usage).dataCount;
+
+    return res.json({ 
+        type:  'data',
+        price: 'R 5.00',
+        occured: instance ,
+        total: total         
+    });
+});
+
+app.get('/api/phonebill/callPrice', function(req, res) {
+    
+    const usage = req.query.usage;
+    const total = totalCallBill(usage).totalBill;
+    const instance = totalCallBill(usage).callCount;
+
+    return res.json({ 
+        type:  'call',
+        price: 'R 2.75',
+        occured: instance ,
+        total: total         
     });
 });
 
