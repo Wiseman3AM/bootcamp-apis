@@ -94,14 +94,14 @@ app.get('/api/phonebill/callPrice', function(req, res) {
 app.get('/api/enoughAirtime', function(req, res) {
     
     const usage = req.query.usage;
-    const result = req.query.result;
+    const remaining = req.query.remaining;
 
 
-    const calculatedAirtime = enoughAirtime(usage, result);
+    const calculatedAirtime = enoughAirtime(usage, remaining);
 
     return res.json({ 
-        Usage: usage,
-        Airtime: result,
+        usage: usage,
+        remaining: remaining,
         Balance:  calculatedAirtime,           
     });
 });

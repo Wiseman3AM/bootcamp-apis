@@ -60,11 +60,13 @@
 
         <P>Enter your remaining balance to calculate costs</P>
 
-        <div> <label for="balanceInput">Enter balance here:</label><input x-model="balance" type="number" id="balanceInput">
+        <div> <label for="usageBInput">Enter usage here:</label><input x-model="usageB" type="text" id="usageBInput">
+
+        <div> <label for="balanceInput">Enter balance here:</label><input x-model="airtime" type="number" id="balanceInput">
         </div>
 
-        <button class="sentenceButton" @click=" ">calculate phone bill</button>
-        <div x-text=""></div>
+        <button class="sentenceButton" @click="enoughAirtimeCalculator()">calculate phone bill</button>
+  
 
     </div>
 

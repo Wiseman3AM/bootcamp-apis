@@ -5,11 +5,13 @@ document.addEventListener('alpine:init', () => {
       wordGameShow: true,
       sentence: '',
       usage: '',
+      usageB: '',
       wordGameObject: {},
       totalBill: '',
       smsBill: '',
       callBill: '',
       dataBill: '',
+      airtime: '',
       balance: '',
 
 
@@ -124,8 +126,11 @@ document.addEventListener('alpine:init', () => {
       async fetchEnoughAirtimeAPI() {
 
         try {
-          const response = await axios.get(`http://localhost:1205/api/phonebill/smsPrice?`, {
-            params: { usage: this.usage }
+          const response = await axios.get(`http://localhost:1205/api/enoughAirtime?`, {
+            params: {
+              usage: this.usageB,
+              remaining: this.airtime
+            }
           });
           this.balance = response.data
           console.log('Remaining balance', this.balance);
@@ -133,25 +138,35 @@ document.addEventListener('alpine:init', () => {
           console.error('Error: ', error);
         }
       },
-      
 
 
-
-
-
-
-
-
-
-
-
-
-   /*    async init() {
-
-
-
+      enoughAirtimeCalculator() {
+        if (!this.usageB || this.usageB.trim() === '') {
+          localStorage['usageB'] = this.usageB;
+          alert("Please enter usage");
+        } else {
+          this.fetchEnoughAirtimeAPI();
+          localStorage['usageB'] = this.usageB;
+        }
       },
- */
+
+
+
+
+
+
+
+
+
+
+
+
+      /*    async init() {
+   
+   
+   
+         },
+    */
 
     }
   })
