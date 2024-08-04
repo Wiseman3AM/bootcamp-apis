@@ -10,6 +10,7 @@ document.addEventListener('alpine:init', () => {
       smsBill: '',
       callBill: '',
       dataBill: '',
+      balance: '',
 
 
 
@@ -118,7 +119,20 @@ document.addEventListener('alpine:init', () => {
           this.fetchTotalSmsBillAPI();
           this.fetchTotalDataBillAPI();
         }
-      }
+      },
+
+      async fetchEnoughAirtimeAPI() {
+
+        try {
+          const response = await axios.get(`http://localhost:1205/api/phonebill/smsPrice?`, {
+            params: { usage: this.usage }
+          });
+          this.balance = response.data
+          console.log('Remaining balance', this.balance);
+        } catch (error) {
+          console.error('Error: ', error);
+        }
+      },
       
 
 

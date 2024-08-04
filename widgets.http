@@ -22,4 +22,8 @@ Content-Type: application/json
 GET http://localhost:1205/api/phonebill/smsPrice?usage=call,%20sms,%20sms,%20call,%20sms,%20call,%20,%20call,%20call,%20sms
 Content-Type: application/json
 
+### GET enough airtime API
+GET http://localhost:1205/api/enoughAirtime?usage=call,%20sms,%20sms,%20call,%20sms,%20call,%20,%20call,%20call,%20sms&result=50
+Content-Type: application/json
+
 

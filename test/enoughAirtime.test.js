@@ -5,15 +5,15 @@ import { describe, it } from 'node:test';
 
 describe('The enoughAirtime function', function () {
     it('must calculate if a user will have enough airtime based on their projected usage', function () {
-        assert.equal('R16.98', enoughAirtime('call,call,call,data,sms,sms,call,data', 50));
+        assert.equal('R27.70', enoughAirtime('call,call,call,data,sms,sms,call,data', 50));
     });
 
     it('must calculate if a user will have enough airtime based on their projected usage', function () {
-        assert.equal('R0.00', enoughAirtime('data,sms,data,sms', 20));
+        assert.equal('Not enough airtime!', enoughAirtime('data,sms,data,sms', 3));
     });
 
     it('must calculate if a user will have enough airtime based on their projected usage', function () {
-        assert.equal('R0.00', enoughAirtime('data,data,data', 36));
+        assert.equal('R21.00', enoughAirtime('data,data,data', 36));
     });
 
 });

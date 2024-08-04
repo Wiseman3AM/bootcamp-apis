@@ -1,9 +1,9 @@
 // Function to determine if you have enough airtime
 function enoughAirtime(usage, airtime) {
     // Define the costs
-    const callCost = 1.88; // Cost per call
-    const smsCost = 0.75;  // Cost per SMS
-    const dataCost = 12;   // Cost per data
+    const callCost = 2.75; // Cost per call
+    const smsCost = 0.65;  // Cost per SMS
+    const dataCost = 5.00;   // Cost per data
   
     // Split the usage into an array
     const usageArray = usage.split(','); // No spaces between commas
@@ -40,10 +40,10 @@ function enoughAirtime(usage, airtime) {
     const remainingAirtime = airtime - totalBill;
     
     // Determine if the airtime is enough
-    if (remainingAirtime > 0) {
+    if (remainingAirtime >= 0) {
       return  `R${remainingAirtime.toFixed(2)}`;
     } else {
-      return 'R0.00';
+      return 'Not enough airtime!';
     }
   }
 
