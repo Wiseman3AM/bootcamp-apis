@@ -19,8 +19,8 @@ app.use(express.static('public'));
 
 
 
-app.post('/api/word_game', function(req, res) {
-    const sentence = req.body.sentence;
+app.get('/api/word_game', function(req, res) {
+    const sentence = req.query.sentence;
 
 
     const longestWordgame = longestWord(sentence);
@@ -36,9 +36,9 @@ app.post('/api/word_game', function(req, res) {
 
 
 
-app.post('/api/phonebill/total', function(req, res) {
+app.get('/api/phonebill/total', function(req, res) {
     
-    const usage = req.body.usage;
+    const usage = req.query.usage;
     const totalBill = totalPhoneBill(usage);
 
     return res.json({ 
@@ -47,9 +47,9 @@ app.post('/api/phonebill/total', function(req, res) {
 });
 
 
-app.post('/api/phonebill/smsPrice', function(req, res) {
+app.get('/api/phonebill/smsPrice', function(req, res) {
     
-    const usage = req.body.usage;
+    const usage = req.query.usage;
     const total = totalSmsBill(usage).totalBill;
     const instance = totalSmsBill(usage).smsCount;
 
@@ -61,9 +61,9 @@ app.post('/api/phonebill/smsPrice', function(req, res) {
     });
 });
 
-app.post('/api/phonebill/dataPrice', function(req, res) {
+app.get('/api/phonebill/dataPrice', function(req, res) {
     
-    const usage = req.body.usage;
+    const usage = req.query.usage;
     const total = totalDataBill(usage).totalBill;
     const instance = totalDataBill(usage).dataCount;
 
@@ -75,7 +75,7 @@ app.post('/api/phonebill/dataPrice', function(req, res) {
     });
 });
 
-app.post('/api/phonebill/callPrice', function(req, res) {
+app.get('/api/phonebill/callPrice', function(req, res) {
     
     const usage = req.query.usage;
     const total = totalCallBill(usage).totalBill;
@@ -91,7 +91,7 @@ app.post('/api/phonebill/callPrice', function(req, res) {
 
 
 
-app.post('/api/enoughAirtime', function(req, res) {
+app.get('/api/enoughAirtime', function(req, res) {
     
     const usage = req.query.usage;
     const remaining = req.query.remaining;

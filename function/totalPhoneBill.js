@@ -23,4 +23,4 @@ function totalPhoneBill(usage) {
   return `R${totalBill.toFixed(2)}`
 }
 
-export default totalPhoneBill
+export default totalPhoneBill;

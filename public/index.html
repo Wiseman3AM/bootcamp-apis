@@ -11,27 +11,7 @@
     <script src="./alpineData.js"></script>
     <title>Bootcamp APIs</title>
 
-    <style>
-        body {
-            margin-left: 1.5em;
-            margin-right: 1.5em;
-            background-color: #edf2f4;
-        }
 
-        h1, h2 {
-            text-align: center;
-        }
-
-            .wordGame{
-                background-color: #b8c0ff;
-                box-sizing: border-box;
-                justify-content: center;
-                text-align: center;
-                border: 1px solid #b8c0ff;
-                box-shadow: #0a9396;
-            }
-
-    </style>
 
 </head>
 
@@ -75,6 +55,38 @@
         <div x-text="'Your total bill = ' + totalBill.Bill"></div>
 
         <button class="sentenceButton" @click=" billDetail()">Bill details</button>
+
+        <table>
+            <tr>
+                <th></th>
+                <th x-text="callBill.type"><strong></strong></th>
+                <th  x-text="smsBill.type"></th>><strong></strong></th>
+                <th  x-text="dataBill.type"></th>><strong></strong></th>
+            </tr>
+
+            <tr>
+                <th><strong>Price</strong></th>
+                <td  x-text="callBill.price"></td>></td>
+                <td x-text="smsBill.price"></td>
+                <td x-text="dataBill.price"></td>
+            </tr>
+
+
+            <tr>
+                <th><strong>Occurance</strong></th>
+                <td x-text="callBill.occured"></td>
+                <td x-text="smsBill.occured"></td>
+                <td x-text="dataBill.occured"></td>
+            </tr>
+
+            <tr>
+                <th><strong>Total</strong></th>
+                <td x-text="callBill.total"></td>
+                <td x-text="smsBill.total"></td>
+                <td x-text="dataBill.total"></td>
+            </tr>
+
+        </table>
 
 
 

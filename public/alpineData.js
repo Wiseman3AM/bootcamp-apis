@@ -8,9 +8,9 @@ document.addEventListener('alpine:init', () => {
       usageB: '',
       wordGameObject: {},
       totalBill: '',
-      smsBill: '',
-      callBill: '',
-      dataBill: '',
+      smsBill: {},
+      callBill: {},
+      dataBill: {},
       airtime: '',
       balance: '',
 
@@ -21,7 +21,7 @@ document.addEventListener('alpine:init', () => {
       async fetchWordGameAPI() {
 
         try {
-          const response = await axios.post(`http://localhost:1205/api/word_game?`, {
+          const response = await axios.get(`http://localhost:1205/api/word_game?`, {
             params: { sentence: this.sentence }
           });
           this.wordGameObject = response.data
@@ -47,7 +47,7 @@ document.addEventListener('alpine:init', () => {
       async fetchTotalPhoneBillAPI() {
 
         try {
-          const response = await axios.post(`http://localhost:1205/api/phonebill/total?`, {
+          const response = await axios.get(`http://localhost:1205/api/phonebill/total?`, {
             params: { usage: this.usage }
           });
           this.totalBill = response.data
@@ -77,7 +77,7 @@ document.addEventListener('alpine:init', () => {
       async fetchTotalCallBillAPI() {
 
         try {
-          const response = await axios.post(`http://localhost:1205/api/phonebill/callPrice?`, {
+          const response = await axios.get(`http://localhost:1205/api/phonebill/callPrice?`, {
             params: { usage: this.usage }
           });
           this.callBill = response.data
@@ -90,7 +90,7 @@ document.addEventListener('alpine:init', () => {
       async fetchTotalDataBillAPI() {
 
         try {
-          const response = await axios.post(`http://localhost:1205/api/phonebill/dataPrice?`, {
+          const response = await axios.get(`http://localhost:1205/api/phonebill/dataPrice?`, {
             params: { usage: this.usage }
           });
           this.dataBill = response.data
@@ -103,7 +103,7 @@ document.addEventListener('alpine:init', () => {
       async fetchTotalSmsBillAPI() {
 
         try {
-          const response = await axios.post(`http://localhost:1205/api/phonebill/smsPrice?`, {
+          const response = await axios.get(`http://localhost:1205/api/phonebill/smsPrice?`, {
             params: { usage: this.usage }
           });
           this.smsBill = response.data
@@ -126,7 +126,7 @@ document.addEventListener('alpine:init', () => {
       async fetchEnoughAirtimeAPI() {
 
         try {
-          const response = await axios.post(`http://localhost:1205/api/enoughAirtime?`, {
+          const response = await axios.get(`http://localhost:1205/api/enoughAirtime?`, {
             params: {
               usage: this.usageB,
               remaining: this.airtime

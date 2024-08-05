@@ -3,7 +3,7 @@ GET http://localhost:1205/api/word_game?sentence=My%20name%20is%20Amukelani%20Mt
 Content-Type: application/json
 
 ### GET total phone bill API
-GET http://localhost:1205/api/phonebill/total?usage=call,%20sms,%20sms,%20call,%20sms,%20call,%20,%20call,%20call,%20sms
+POST  http://localhost:1205/api/phonebill/total?usage=call,%20sms,%20sms,%20call,%20sms,%20call,%20,%20call,%20call,%20sms
 Content-Type: application/json
 
 
@@ -23,7 +23,7 @@ GET http://localhost:1205/api/phonebill/smsPrice?usage=call,%20sms,%20sms,%20cal
 Content-Type: application/json
 
 ### GET enough airtime API
-GET http://localhost:1205/api/enoughAirtime?usage=call,%20sms,%20sms,%20call,%20sms,%20call,%20,%20call,%20call,%20sms&result=50
+POST  http://localhost:1205/api/enoughAirtime?usage=call,%20sms,%20sms,%20call,%20sms,%20call,%20,%20call,%20call,%20sms&result=50
 Content-Type: application/json
 
 
