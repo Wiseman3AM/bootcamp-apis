@@ -7,15 +7,42 @@
     <script defer src="https://unpkg.com/alpinejs"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-    <link rel="stylesheet" href="../style.css">
-    <script src="alpineData.js"></script>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./alpineData.js"></script>
     <title>Bootcamp APIs</title>
+
+    <style>
+        body {
+            margin-left: 1.5em;
+            margin-right: 1.5em;
+            background-color: #edf2f4;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+            .wordGame{
+                background-color: #b8c0ff;
+                box-sizing: border-box;
+                justify-content: center;
+                text-align: center;
+                border: 1px solid #b8c0ff;
+                box-shadow: #0a9396;
+            }
+
+    </style>
+
 </head>
 
 <body x-data="bootcampFunctions()">
 
+
+    <h1>BOOTCAMP API FUNCTIONS</h1>
+
+
     <div class="wordGame">
-        <h1>Wordgame Function</h1>
+        <h2>Wordgame Function</h2>
         <P>Enter a sentence of 10 or more words to get the following information</P>
         <div> <label for="sentenceInput">Enter sentence here:</label><input x-model="sentence" type="text"
                 id="sentenceInput"> </div>
@@ -62,13 +89,14 @@
 
         <div> <label for="usageBInput">Enter usage here:</label><input x-model="usageB" type="text" id="usageBInput">
 
-        <div> <label for="balanceInput">Enter balance here:</label><input x-model="airtime" type="number" id="balanceInput">
+            <div> <label for="balanceInput">Enter balance here:</label><input x-model="airtime" type="number"
+                    id="balanceInput">
+            </div>
+
+            <button class="sentenceButton" @click="enoughAirtimeCalculator()">calculate phone bill</button>
+
+
         </div>
-
-        <button class="sentenceButton" @click="enoughAirtimeCalculator()">calculate phone bill</button>
-  
-
-    </div>
 
 
 
