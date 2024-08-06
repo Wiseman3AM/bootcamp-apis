@@ -7,7 +7,7 @@ document.addEventListener('alpine:init', () => {
       usage: '',
       usageB: '',
       wordGameObject: {},
-      totalBill: '',
+      totalBill: [],
       smsBill: {},
       callBill: {},
       dataBill: {},
@@ -50,7 +50,8 @@ document.addEventListener('alpine:init', () => {
           const response = await axios.get(`http://localhost:1205/api/phonebill/total?`, {
             params: { usage: this.usage }
           });
-          this.totalBill = response.data
+          this.totalBill = [];
+          await this.totalBill.push(response.data);
           console.log('Total bill', this.totalBill);
         } catch (error) {
           console.error('Error: ', error);

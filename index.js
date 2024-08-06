@@ -12,14 +12,14 @@ import totalSmsBill from './function/totalSmsBill.js';
 
 
 const app = express();
-app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(cors());
 app.use(express.static('public'));
 
 
 
-app.get('/api/word_game', function(req, res) {
+app.get('/api/word_game', function (req, res) {
     const sentence = req.query.sentence;
 
 
@@ -27,82 +27,88 @@ app.get('/api/word_game', function(req, res) {
     const shortestWordgame = shortestWord(sentence);
     const sumWordgame = wordLengths(sentence);
 
-    return res.json({ 
+    return res.json({
         longestWord: longestWordgame,
         shortestWord: shortestWordgame,
-        wordLengths: sumWordgame            
+        wordLengths: sumWordgame
     });
 });
 
 
 
-app.get('/api/phonebill/total', function(req, res) {
-    
+app.get('/api/phonebill/total', function (req, res) {
+
     const usage = req.query.usage;
     const totalBill = totalPhoneBill(usage);
 
-    return res.json({ 
-        Bill:  totalBill,           
-    });
+    return res.json([
+        {
+            Bill: totalBill,
+           
+        },
+        {
+            status: 'success',
+            message: `The transaction is a sucess ${totalBill}`,
+        }]);
 });
 
 
-app.get('/api/phonebill/smsPrice', function(req, res) {
-    
+app.get('/api/phonebill/smsPrice', function (req, res) {
+
     const usage = req.query.usage;
     const total = totalSmsBill(usage).totalBill;
     const instance = totalSmsBill(usage).smsCount;
 
-    return res.json({ 
-        type:  'sms',
+    return res.json({
+        type: 'sms',
         price: 'R 0.65',
-        occured: instance ,
-        total: total         
+        occured: instance,
+        total: total
     });
 });
 
-app.get('/api/phonebill/dataPrice', function(req, res) {
-    
+app.get('/api/phonebill/dataPrice', function (req, res) {
+
     const usage = req.query.usage;
     const total = totalDataBill(usage).totalBill;
     const instance = totalDataBill(usage).dataCount;
 
-    return res.json({ 
-        type:  'data',
+    return res.json({
+        type: 'data',
         price: 'R 5.00',
-        occured: instance ,
-        total: total         
+        occured: instance,
+        total: total
     });
 });
 
-app.get('/api/phonebill/callPrice', function(req, res) {
-    
+app.get('/api/phonebill/callPrice', function (req, res) {
+
     const usage = req.query.usage;
     const total = totalCallBill(usage).totalBill;
     const instance = totalCallBill(usage).callCount;
 
-    return res.json({ 
-        type:  'call',
+    return res.json({
+        type: 'call',
         price: 'R 2.75',
-        occured: instance ,
-        total: total         
+        occured: instance,
+        total: total
     });
 });
 
 
 
-app.get('/api/enoughAirtime', function(req, res) {
-    
+app.get('/api/enoughAirtime', function (req, res) {
+
     const usage = req.query.usage;
     const remaining = req.query.remaining;
 
 
     const calculatedAirtime = enoughAirtime(usage, remaining);
 
-    return res.json({ 
+    return res.json({
         usage: usage,
         remaining: remaining,
-        Balance:  calculatedAirtime,           
+        Balance: calculatedAirtime,
     });
 });
 
