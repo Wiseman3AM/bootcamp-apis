@@ -15,7 +15,7 @@
 
 </head>
 
-<body x-data="bootcampFunctions()">
+<body x-data="bootcampFunctions()" x-cloak="">
 
 
     <h1 class="title">BOOTCAMP API FUNCTIONS</h1>
@@ -25,18 +25,19 @@
         <h2>Wordgame Function</h2>
         <P>Enter a sentence of 10 or more words to get the following information</P>
         <div> <label for="sentenceInput">Enter sentence here:</label>
-            <input class="inputs" x-model="sentence" type="text" id="sentenceInput"> </div>
+            <input class="inputs" x-model="sentence" type="text" id="sentenceInput">
+        </div>
 
-        <button class="sentenceButton" @click="wordGameShow = false; wordGame()" x-show="wordGameShow = true">Play word
+        <button class="sentenceButton" @click="wordGameShow = true; wordGame()" :disabled="wordGameShow">Play word
             game</button>
 
-        <div class="wordGameResults">
+        <div x-show="wordGameShow" class="wordGameResults">
             <div x-text="'Longest word :' +  wordGameObject.longestWord"></div>
             <div x-text="'Shortest word :' + wordGameObject.shortestWord"></div>
             <div x-text="'Sum of all words: ' + wordGameObject.wordLengths"></div>
         </div>
 
-        <button class="sentenceButton" x-show="wordGameShow = false" @click=" wordGameShow = true">Enter new
+        <button class="sentenceButton" x-show="wordGameShow" @click=" wordGameShow = false">Enter new
             sentence</button>
 
     </div>
@@ -47,20 +48,24 @@
         <h2>Total phone bill</h2>
 
         <div class="textAlign">
-        <P>Enter a "call," "sms," or "data," to calculate usage</P>
+            <P>Enter a "call," "sms," or "data," to calculate usage</P>
 
-        <div> 
-            <label for="usageInput">Enter usage here:</label>
-            <input class="inputs" x-model="usage" type="text" id="usageInput">
+                <label for="usageInput">Enter usage here:</label>
+                <input class="inputs" x-model="usage" type="text" id="usageInput">
+            </div>
+
+            <button class="sentenceButton" @click=" totalPhoneBill(); billShow = true" :disabled="billShow" >calculate phone bill</button>
+           
+           
+            <div class="balanceRemaining" x-show="billShow">
+            <div x-text="totalBill[0][1].message"> </div>
+            <div x-text="'Total Bill = ' + totalBill[0][0].Bill"   ></div>
+            
         </div>
 
-        <button class="sentenceButton" @click=" totalPhoneBill()">calculate phone bill</button>
-        <div x-text="'Your total bill = ' + totalBill[0][0].Bill"></div>
+            <button class="sentenceButton" @click="billDetail(); details = !details" x-show="billShow">Bill details</button>
 
-        <button class="sentenceButton" @click=" billDetail()">Bill details</button>
-    </div>
-
-        <table>
+        <table x-show="details && billShow">
             <tr>
                 <th></th>
                 <th x-text="callBill.type"><strong></strong></th>
@@ -70,7 +75,7 @@
 
             <tr>
                 <th><strong>Price</strong></th>
-                <td  x-text="callBill.price"></td>></td>
+                <td x-text="callBill.price"></td>></td>
                 <td x-text="smsBill.price"></td>
                 <td x-text="dataBill.price"></td>
             </tr>
@@ -92,6 +97,10 @@
 
         </table>
 
+        <button class="sentenceButton"@click="billShow = false"  x-show="billShow" >Calculate again</button>
+
+
+
 
 
 
@@ -103,22 +112,24 @@
 
         <P>Enter your remaining balance to calculate costs</P>
 
-        <div>
-            <div class="airtimeInputs">  
 
-            <label for="usageBInput">Usage<span style="color:#fefae0;">s</span>:</label>
-            <input class="inputs" x-model="usageB" type="text" id="usageBInput">
+            <div class="airtimeInputs">
 
-            <div> 
-                <label for="balanceInput">Airtime:</label>
-                <input class="inputs" x-model="airtime" type="number" id="balanceInput">
+                <label for="usageBInput">Usage<span style="color:#fefae0;">s</span>:</label>
+                <input class="inputs" x-model="usageB" type="text" id="usageBInput">
+
+                <div>
+                    <label for="balanceInput">Airtime:</label>
+                    <input class="inputs" x-model="airtime" type="number" id="balanceInput">
+                </div>
             </div>
-</div>
-            <button class="sentenceButton" @click="enoughAirtimeCalculator()">calculate phone bill</button>
-            <div x-text="balance.Balance"></div>
 
+            <button class="sentenceButton" @click="enoughAirtimeCalculator(); airtimeShow = true" :disabled="airtimeShow">calculate phone bill</button>
 
-        </div>
+            <div class="balanceRemaining" x-text="balance.Balance" x-show="airtimeShow"></div>
+
+            <button class="sentenceButton" x-show="airtimeShow" @click="airtimeShow = false">calculate again</button>
+
 
 
 

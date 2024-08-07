@@ -2,7 +2,10 @@ document.addEventListener('alpine:init', () => {
   Alpine.data('bootcampFunctions', () => {
     return {
 
-      wordGameShow: true,
+      wordGameShow: false,
+      billShow: false,
+      airtimeShow: false,
+      details: false,
       sentence: '',
       usage: '',
       usageB: '',

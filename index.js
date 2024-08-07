@@ -48,7 +48,7 @@ app.get('/api/phonebill/total', function (req, res) {
         },
         {
             status: 'success',
-            message: `The transaction is a sucess ${totalBill}`,
+            message: 'Successful transaction',
         }]);
 });
 
