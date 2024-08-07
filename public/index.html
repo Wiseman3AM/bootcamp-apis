@@ -18,14 +18,14 @@
 <body x-data="bootcampFunctions()">
 
 
-    <h1>BOOTCAMP API FUNCTIONS</h1>
+    <h1 class="title">BOOTCAMP API FUNCTIONS</h1>
 
 
     <div class="wordGame">
         <h2>Wordgame Function</h2>
         <P>Enter a sentence of 10 or more words to get the following information</P>
-        <div> <label for="sentenceInput">Enter sentence here:</label><input x-model="sentence" type="text"
-                id="sentenceInput"> </div>
+        <div> <label for="sentenceInput">Enter sentence here:</label>
+            <input class="inputs" x-model="sentence" type="text" id="sentenceInput"> </div>
 
         <button class="sentenceButton" @click="wordGameShow = false; wordGame()" x-show="wordGameShow = true">Play word
             game</button>
@@ -46,22 +46,26 @@
     <div class="totalPhoneBill">
         <h2>Total phone bill</h2>
 
+        <div class="textAlign">
         <P>Enter a "call," "sms," or "data," to calculate usage</P>
 
-        <div> <label for="usageInput">Enter usage here:</label><input x-model="usage" type="text" id="usageInput">
+        <div> 
+            <label for="usageInput">Enter usage here:</label>
+            <input class="inputs" x-model="usage" type="text" id="usageInput">
         </div>
 
         <button class="sentenceButton" @click=" totalPhoneBill()">calculate phone bill</button>
         <div x-text="'Your total bill = ' + totalBill[0][0].Bill"></div>
 
         <button class="sentenceButton" @click=" billDetail()">Bill details</button>
+    </div>
 
         <table>
             <tr>
                 <th></th>
                 <th x-text="callBill.type"><strong></strong></th>
-                <th  x-text="smsBill.type"></th>><strong></strong></th>
-                <th  x-text="dataBill.type"></th>><strong></strong></th>
+                <th x-text="smsBill.type"><strong></strong></th>
+                <th x-text="dataBill.type"><strong></strong></th>
             </tr>
 
             <tr>
@@ -99,13 +103,19 @@
 
         <P>Enter your remaining balance to calculate costs</P>
 
-        <div> <label for="usageBInput">Enter usage here:</label><input x-model="usageB" type="text" id="usageBInput">
+        <div>
+            <div class="airtimeInputs">  
 
-            <div> <label for="balanceInput">Enter balance here:</label><input x-model="airtime" type="number"
-                    id="balanceInput">
+            <label for="usageBInput">Usage<span style="color:#fefae0;">s</span>:</label>
+            <input class="inputs" x-model="usageB" type="text" id="usageBInput">
+
+            <div> 
+                <label for="balanceInput">Airtime:</label>
+                <input class="inputs" x-model="airtime" type="number" id="balanceInput">
             </div>
-
+</div>
             <button class="sentenceButton" @click="enoughAirtimeCalculator()">calculate phone bill</button>
+            <div x-text="balance.Balance"></div>
 
 
         </div>
