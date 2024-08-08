@@ -118,3 +118,35 @@ const PORT = process.env.PORT || 1205;
 app.listen(PORT, () => {
     console.log('Port is running on ', PORT)
 })
+
+
+
+
+/*   router.delete('/reg_number', (req, res) => {
+    const { reg_number } = req.query;
+  
+    cars = cars.filter((car) => car.reg_number !== reg_number)
+  
+    res.send(`${reg_number} deleted successfully from database`);
+  });
+   */
+
+
+ /*  router.delete('/reg_number', (req, res) => {
+    const { reg_number } = req.query;
+  
+    // Check if the reg_number is provided
+    if (!reg_number) {
+      return res.status(400).send({ message: 'Registration number is required' });
+    }
+  
+    // Filter out the car with the specified reg_number
+    let initialLength = cars.length; // Store the initial length for comparison
+    let cars = cars.filter((car) => car.reg_number !== reg_number);
+  
+    if (cars.length < initialLength) {
+      res.send(`${reg_number} deleted successfully from the database`);
+    } else {
+      res.status(404).send({ message: 'Car not found' });
+    }
+  }); */
