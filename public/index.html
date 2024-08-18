@@ -24,9 +24,9 @@
     <div class="wordGame">
         <h2>Wordgame Function</h2>
         <P>Enter a sentence of 10 or more words to get the following information</P>
-        <div> <label for="sentenceInput">Enter sentence here:</label>
-            <input class="inputs" x-model="sentence" type="text" id="sentenceInput">
-        </div>
+        
+            <input style="width: 95%;" class="inputs" x-model="sentence" type="text" id="sentenceInput" placeholder="Enter sentence here">
+        
 
         <button class="sentenceButton" @click="wordGameShow = true; wordGame()" :disabled="wordGameShow">Play word
             game</button>
@@ -48,13 +48,25 @@
         <h2>Total phone bill</h2>
     
         <div class="textAlign">
+
+        <p>Enter the cost of a call, sms, or data charge to enter usage</p>
+        <input class="inputs" x-model="userCall" type="number" id="usageInput" placeholder="Call" :disabled="enterUsage">
+        <input class="inputs" x-model="userSms" type="number" id="usageInput" placeholder="Sms" :disabled="enterUsage">
+        <input class="inputs" x-model="userData" type="number" id="usageInput" placeholder="Data" :disabled="enterUsage">
+
+        <button class="sentenceButton" @click="enterPrices()" x-show="!enterUsage">Enter prices</button>
+
+        <button class="sentenceButton" @click="enterUsage = false" x-show="enterUsage">Change prices</button>
+
+            
+
+
             <p>Enter a "call," "sms," or "data," to calculate usage</p>
     
-            <label for="usageInput">Enter usage here:</label>
-            <input class="inputs" x-model="usage" type="text" id="usageInput">
+            <input class="inputs" x-model="usage" type="text" id="usageInput" placeholder="Enter usage here" :disabled="!enterUsage">
         </div>
     
-        <button class="sentenceButton" @click="totalPhoneBill(); billShow = true" :disabled="billShow">calculate phone bill</button>
+        <button class="sentenceButton" @click="totalPhoneBill(); billShow = true" :disabled="billShow || !enterUsage ">calculate phone bill</button>
     
         <div class="balanceRemaining" x-show="billShow">
             <div x-text="totalBill[0][1].message"></div>

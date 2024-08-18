@@ -1,5 +1,5 @@
-function totalSmsBill(usage) {
-    const smsCost = 0.65;
+function totalSmsBill(usage, price) {
+    const smsCost = price;
 
     // Split the usage string by commas and trim whitespace
     let usageAnt = usage.split(/\s*,\s*/);

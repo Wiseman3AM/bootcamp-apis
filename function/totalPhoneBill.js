@@ -1,7 +1,7 @@
-function totalPhoneBill(usage) {
-  const callCost = 2.75;
-  const smsCost = 0.65;
-  const dataCost = 5.00;
+function totalPhoneBill(usage, sms, call, data) {
+  const smsCost = sms;
+  const callCost =  call;
+  const dataCost = data;
 
   let usageAnt = usage.split(/\s*,\s*/); // This will split by comma and ignore spaces
 

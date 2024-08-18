@@ -11,6 +11,10 @@ document.addEventListener('alpine:init', () => {
       usageB: '',
       wordGameObject: {},
       totalBill: [],
+      userSms: '',
+      userCall: '',
+      userData: '',
+      enterUsage: false,
       smsBill: {},
       callBill: {},
       dataBill: {},
@@ -51,7 +55,12 @@ document.addEventListener('alpine:init', () => {
 
         try {
           const response = await axios.get(`http://localhost:1205/api/phonebill/total?`, {
-            params: { usage: this.usage }
+            params: {
+              usage: this.usage,
+              sms: this.userSms,
+              call: this.userCall,
+              data: this.userData
+            }
           });
           this.totalBill = [];
           await this.totalBill.push(response.data);
@@ -78,11 +87,28 @@ document.addEventListener('alpine:init', () => {
       },
 
 
+      enterPrices() {
+        if (this.userCall === '' || this.userSms === '' || this.userData === '') {
+          alert('Please enter valid values for call, SMS, and data.');
+          this.userCall = '';
+          this.userSms = '';
+          this.userData = '';
+          this.enterUsage = false;
+        } else {
+          this.enterUsage = true;
+        }
+      },
+
+
+
       async fetchTotalCallBillAPI() {
 
         try {
           const response = await axios.get(`http://localhost:1205/api/phonebill/callPrice?`, {
-            params: { usage: this.usage }
+            params: {
+              usage: this.usage,
+              price: this.userCall
+            }
           });
           this.callBill = response.data
           console.log('Call bill', this.callBill);
@@ -95,7 +121,10 @@ document.addEventListener('alpine:init', () => {
 
         try {
           const response = await axios.get(`http://localhost:1205/api/phonebill/dataPrice?`, {
-            params: { usage: this.usage }
+            params: {
+              usage: this.usage,
+              price: this.userData
+            }
           });
           this.dataBill = response.data
           console.log('Data bill', this.dataBill);
@@ -108,7 +137,10 @@ document.addEventListener('alpine:init', () => {
 
         try {
           const response = await axios.get(`http://localhost:1205/api/phonebill/smsPrice?`, {
-            params: { usage: this.usage }
+            params: {
+              usage: this.usage,
+              price: this.userSms
+            }
           });
           this.smsBill = response.data
           console.log('Sms bill', this.smsBill);

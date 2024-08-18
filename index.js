@@ -39,7 +39,10 @@ app.get('/api/word_game', function (req, res) {
 app.get('/api/phonebill/total', function (req, res) {
 
     const usage = req.query.usage;
-    const totalBill = totalPhoneBill(usage);
+    const sms = req.query.sms;
+    const call = req.query.call;
+    const data = req.query.data;
+    const totalBill = totalPhoneBill(usage, sms, call, data);
 
     return res.json([
         {
@@ -53,29 +56,57 @@ app.get('/api/phonebill/total', function (req, res) {
 });
 
 
+
+
+
+
+
 app.get('/api/phonebill/smsPrice', function (req, res) {
 
     const usage = req.query.usage;
-    const total = totalSmsBill(usage).totalBill;
-    const instance = totalSmsBill(usage).smsCount;
+    const price = req.query.price;
+    const total = totalSmsBill(usage, price).totalBill;
+    const instance = totalSmsBill(usage,price).smsCount;
 
     return res.json({
         type: 'sms',
-        price: 'R 0.65',
+        price: 'R ' + price,
         occured: instance,
         total: total
     });
 });
 
+
+
+app.post('/api/phonebill/smsPrice', function (req, res) {
+
+    const usage = req.body.usage;
+    const price = req.body.price;
+    const total = totalSmsBill(usage, price).totalBill;
+    const instance = totalSmsBill(usage, price).smsCount;
+
+    return res.json({
+        type: 'sms',
+        price: 'R ' + price,
+        occured: instance,
+        total: total
+    });
+});
+
+
+
+
+
 app.get('/api/phonebill/dataPrice', function (req, res) {
 
     const usage = req.query.usage;
-    const total = totalDataBill(usage).totalBill;
-    const instance = totalDataBill(usage).dataCount;
+    const price = req.query.price;
+    const total = totalDataBill(usage, price).totalBill;
+    const instance = totalDataBill(usage, price).dataCount;
 
     return res.json({
         type: 'data',
-        price: 'R 5.00',
+        price: 'R ' + price,
         occured: instance,
         total: total
     });
@@ -84,12 +115,13 @@ app.get('/api/phonebill/dataPrice', function (req, res) {
 app.get('/api/phonebill/callPrice', function (req, res) {
 
     const usage = req.query.usage;
-    const total = totalCallBill(usage).totalBill;
-    const instance = totalCallBill(usage).callCount;
+    const price = req.query.price;
+    const total = totalCallBill(usage, price).totalBill;
+    const instance = totalCallBill(usage, price).callCount;
 
     return res.json({
         type: 'call',
-        price: 'R 2.75',
+        price: 'R ' + price,
         occured: instance,
         total: total
     });
@@ -122,31 +154,3 @@ app.listen(PORT, () => {
 
 
 
-/*   router.delete('/reg_number', (req, res) => {
-    const { reg_number } = req.query;
-  
-    cars = cars.filter((car) => car.reg_number !== reg_number)
-  
-    res.send(`${reg_number} deleted successfully from database`);
-  });
-   */
-
-
- /*  router.delete('/reg_number', (req, res) => {
-    const { reg_number } = req.query;
-  
-    // Check if the reg_number is provided
-    if (!reg_number) {
-      return res.status(400).send({ message: 'Registration number is required' });
-    }
-  
-    // Filter out the car with the specified reg_number
-    let initialLength = cars.length; // Store the initial length for comparison
-    let cars = cars.filter((car) => car.reg_number !== reg_number);
-  
-    if (cars.length < initialLength) {
-      res.send(`${reg_number} deleted successfully from the database`);
-    } else {
-      res.status(404).send({ message: 'Car not found' });
-    }
-  }); */

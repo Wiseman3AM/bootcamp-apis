@@ -1,6 +1,5 @@
-function totalCallBill(usage) {
-    const callCost = 2.75;
-
+function totalCallBill(usage, price) {
+    const callCost = price;
 
     let usageAnt = usage.split(/\s*,\s*/);
   

@@ -1,5 +1,5 @@
-function totalDataBill(usage) {
-    const dataCost = 5.00;
+function totalDataBill(usage, price) {
+    const dataCost = price;
     let usageAnt = usage.split(/\s*,\s*/);
     let dataCount = 0;
   
