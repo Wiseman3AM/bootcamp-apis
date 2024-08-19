@@ -14,7 +14,11 @@ document.addEventListener('alpine:init', () => {
       userSms: '',
       userCall: '',
       userData: '',
+      userSms2: '',
+      userCall2: '',
+      userData2: '',
       enterUsage: false,
+      enterUsage2: false,
       smsBill: {},
       callBill: {},
       dataBill: {},
@@ -99,6 +103,18 @@ document.addEventListener('alpine:init', () => {
         }
       },
 
+      enterPrices2() {
+        if (this.userCall2 === '' || this.userSms2 === '' || this.userData2 === '') {
+          alert('Please enter valid values for call, SMS, and data.');
+          this.userCall2 = '';
+          this.userSms2 = '';
+          this.userData2 = '';
+          this.enterUsage2 = false;
+        } else {
+          this.enterUsage2 = true;
+        }
+      },
+
 
 
       async fetchTotalCallBillAPI() {
@@ -165,6 +181,9 @@ document.addEventListener('alpine:init', () => {
           const response = await axios.get(`http://localhost:1205/api/enoughAirtime?`, {
             params: {
               usage: this.usageB,
+              sms: this.userSms2,
+              call: this.userCall2,
+              data: this.userData2,
               remaining: this.airtime
             }
           });

@@ -115,8 +115,18 @@
 
         <P>Enter your remaining balance to calculate costs</P>
 
+        <div>
+            <input class="inputs" x-model="userCall2" type="number" id="usageInput2" placeholder="Call" :disabled="enterUsage2">
+            <input class="inputs" x-model="userSms2" type="number" id="usageInput2" placeholder="Sms" :disabled="enterUsage2">
+            <input class="inputs" x-model="userData2" type="number" id="usageInpu2t" placeholder="Data" :disabled="enterUsage2">
+
+            <button class="sentenceButton" @click="enterPrices2()" x-show="!enterUsage2">Enter prices</button>
+
+            <button class="sentenceButton" @click="enterUsage2 = false" x-show="enterUsage2">Change prices</button>
+</div>
 
             <div class="airtimeInputs">
+
 
                 <label for="usageBInput">Usage<span style="color:rgb(255, 165, 0);">s</span>:</label>
                 <input class="inputs" x-model="usageB" type="text" id="usageBInput">
@@ -127,7 +137,7 @@
                 </div>
             </div>
 
-            <button class="sentenceButton" @click="enoughAirtimeCalculator(); airtimeShow = true" :disabled="airtimeShow">calculate phone bill</button>
+            <button class="sentenceButton" @click="enoughAirtimeCalculator(); airtimeShow = true" :disabled="airtimeShow; || !enterUsage2">calculate phone bill</button>
 
             <div class="balanceRemaining" x-text="balance.Balance" x-show="airtimeShow"></div>
 

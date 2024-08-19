@@ -132,10 +132,13 @@ app.get('/api/phonebill/callPrice', function (req, res) {
 app.get('/api/enoughAirtime', function (req, res) {
 
     const usage = req.query.usage;
+    const sms = req.query.sms;
+    const call = req.query.call;
+    const data = req.query.data;
     const remaining = req.query.remaining;
 
 
-    const calculatedAirtime = enoughAirtime(usage, remaining);
+    const calculatedAirtime = enoughAirtime(usage, remaining, sms, call, data);
 
     return res.json({
         usage: usage,

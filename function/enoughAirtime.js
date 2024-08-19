@@ -1,9 +1,9 @@
 // Function to determine if you have enough airtime
-function enoughAirtime(usage, airtime) {
+function enoughAirtime(usage, airtime, sms, call, data) {
     // Define the costs
-    const callCost = 2.75; // Cost per call
-    const smsCost = 0.65;  // Cost per SMS
-    const dataCost = 5.00;   // Cost per data
+    const callCost = call; // Cost per call
+    const smsCost = sms;  // Cost per SMS
+    const dataCost = data;   // Cost per data
   
     // Split the usage into an array
     const usageArray = usage.split(','); // No spaces between commas
