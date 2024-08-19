@@ -202,6 +202,8 @@ document.addEventListener('alpine:init', () => {
         } else {
           this.fetchEnoughAirtimeAPI();
           localStorage['usageB'] = this.usageB;
+          this.airtimeShow = true;
+          
         }
       },
 

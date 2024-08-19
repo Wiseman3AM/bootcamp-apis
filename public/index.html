@@ -24,9 +24,10 @@
     <div class="wordGame">
         <h2>Wordgame Function</h2>
         <P>Enter a sentence of 10 or more words to get the following information</P>
-        
-            <input style="width: 95%;" class="inputs" x-model="sentence" type="text" id="sentenceInput" placeholder="Enter sentence here">
-        
+
+        <input style="width: 95%;" class="inputs" x-model="sentence" type="text" id="sentenceInput"
+            placeholder="Enter sentence here">
+
 
         <button class="sentenceButton" @click="wordGameShow = true; wordGame()" :disabled="wordGameShow">Play word
             game</button>
@@ -46,35 +47,40 @@
 
     <div class="totalPhoneBill">
         <h2>Total phone bill</h2>
-    
+
         <div class="textAlign">
 
-        <p>Enter the cost of a call, sms, or data charge to enter usage</p>
-        <input class="inputs" x-model="userCall" type="number" id="usageInput" placeholder="Call" :disabled="enterUsage">
-        <input class="inputs" x-model="userSms" type="number" id="usageInput" placeholder="Sms" :disabled="enterUsage">
-        <input class="inputs" x-model="userData" type="number" id="usageInput" placeholder="Data" :disabled="enterUsage">
+            <p>Enter the cost of a call, sms, or data charge to enter usage</p>
+            <input class="inputs" x-model="userCall" type="number" min="0" id="usageInput" placeholder="Call"
+                :disabled="enterUsage">
+            <input class="inputs" x-model="userSms" type="number" min="0" id="usageInput" placeholder="Sms"
+                :disabled="enterUsage">
+            <input class="inputs" x-model="userData" type="number" min="0" id="usageInput" placeholder="Data"
+                :disabled="enterUsage">
 
-        <button class="sentenceButton" @click="enterPrices()" x-show="!enterUsage">Enter prices</button>
+            <button class="sentenceButton" @click="enterPrices()" x-show="!enterUsage">Enter prices</button>
 
-        <button class="sentenceButton" @click="enterUsage = false" x-show="enterUsage">Change prices</button>
+            <button class="sentenceButton" @click="enterUsage = false" x-show="enterUsage">Change prices</button>
 
-            
+
 
 
             <p>Enter a "call," "sms," or "data," to calculate usage</p>
-    
-            <input class="inputs" x-model="usage" type="text" id="usageInput" placeholder="Enter usage here" :disabled="!enterUsage">
+
+            <input class="inputs" x-model="usage" type="text" id="usageInput" placeholder="Enter usage here"
+                :disabled="!enterUsage">
         </div>
-    
-        <button class="sentenceButton" @click="totalPhoneBill(); billShow = true" :disabled="billShow || !enterUsage ">calculate phone bill</button>
-    
+
+        <button class="sentenceButton" @click="totalPhoneBill(); billShow = true"
+            :disabled="billShow || !enterUsage ">calculate phone bill</button>
+
         <div class="balanceRemaining" x-show="billShow">
             <div x-text="totalBill[0][1].message"></div>
             <div x-text="'Total Bill = ' + totalBill[0][0].Bill"></div>
         </div>
-    
+
         <button class="sentenceButton" @click="billDetail(); details = !details" x-show="billShow">Bill details</button>
-    
+
         <table x-show="details && billShow">
             <tr>
                 <th></th>
@@ -82,21 +88,21 @@
                 <th x-text="smsBill.type"><strong></strong></th>
                 <th x-text="dataBill.type"><strong></strong></th>
             </tr>
-    
+
             <tr>
                 <th><strong>Price</strong></th>
                 <td x-text="callBill.price"></td>
                 <td x-text="smsBill.price"></td>
                 <td x-text="dataBill.price"></td>
             </tr>
-    
+
             <tr>
                 <th><strong>Occurrence</strong></th>
                 <td x-text="callBill.occured"></td>
                 <td x-text="smsBill.occured"></td>
                 <td x-text="dataBill.occured"></td>
             </tr>
-    
+
             <tr>
                 <th><strong>Total</strong></th>
                 <td x-text="callBill.total"></td>
@@ -104,10 +110,10 @@
                 <td x-text="dataBill.total"></td>
             </tr>
         </table>
-    
+
         <button class="sentenceButton" @click="billShow = false" x-show="billShow">Calculate again</button>
     </div>
-    
+
 
 
     <div class="enoughAirtime">
@@ -116,32 +122,37 @@
         <P>Enter your remaining balance to calculate costs</P>
 
         <div>
-            <input class="inputs" x-model="userCall2" type="number" id="usageInput2" placeholder="Call" :disabled="enterUsage2">
-            <input class="inputs" x-model="userSms2" type="number" id="usageInput2" placeholder="Sms" :disabled="enterUsage2">
-            <input class="inputs" x-model="userData2" type="number" id="usageInpu2t" placeholder="Data" :disabled="enterUsage2">
+            <input class="inputs" x-model="userCall2" type="number"  min="0" id="usageInput2" placeholder="Call"
+                :disabled="enterUsage2">
+            <input class="inputs" x-model="userSms2" type="number" min="0"  id="usageInput2" placeholder="Sms"
+                :disabled="enterUsage2">
+            <input class="inputs" x-model="userData2" type="number"  min="0" id="usageInpu2t" placeholder="Data"
+                :disabled="enterUsage2">
 
             <button class="sentenceButton" @click="enterPrices2()" x-show="!enterUsage2">Enter prices</button>
 
             <button class="sentenceButton" @click="enterUsage2 = false" x-show="enterUsage2">Change prices</button>
-</div>
+        </div>
 
-            <div class="airtimeInputs">
+        <div class="airtimeInputs">
 
 
-                <label for="usageBInput">Usage<span style="color:rgb(255, 165, 0);">s</span>:</label>
-                <input class="inputs" x-model="usageB" type="text" id="usageBInput">
+            <label for="usageBInput">Usage<span style="color:rgb(255, 165, 0);">s</span>:</label>
+            <input class="inputs" x-model="usageB" type="text" id="usageBInput" :disabled="airtimeShow || !enterUsage2">
 
-                <div>
-                    <label for="balanceInput">Airtime:</label>
-                    <input class="inputs" x-model="airtime" type="number" id="balanceInput">
-                </div>
+            <div>
+                <label for="balanceInput">Airtime:</label>
+                <input class="inputs" x-model="airtime" type="number" id="balanceInput"
+                    :disabled="airtimeShow || !enterUsage2" min="0">
             </div>
+        </div>
 
-            <button class="sentenceButton" @click="enoughAirtimeCalculator(); airtimeShow = true" :disabled="airtimeShow; || !enterUsage2">calculate phone bill</button>
+        <button class="sentenceButton" @click="enoughAirtimeCalculator()"
+            :disabled="airtimeShow || !enterUsage2">calculate phone bill</button>
 
-            <div class="balanceRemaining" x-text="balance.Balance" x-show="airtimeShow"></div>
+        <div class="balanceRemaining" x-text="balance.Balance" x-show="airtimeShow"></div>
 
-            <button class="sentenceButton" x-show="airtimeShow" @click="airtimeShow = false">calculate again</button>
+        <button class="sentenceButton" x-show="airtimeShow" @click="airtimeShow = false">calculate again</button>
 
 
 
